@@ -1,0 +1,21 @@
+{
+  "exclude": [
+    "**/*.spec.ts",
+    "tests/",
+    "node_modules"
+  ],
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": [
+      "ES2019"
+    ],
+    "module": "commonjs",
+    "outDir": "./lib",
+    "strict": true,
+    "declaration": true,
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+  }
+}
