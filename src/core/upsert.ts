@@ -106,7 +106,7 @@ export function upsert(config: Config): ReducerProtocol & MiddlewareProtocol {
 
           return over(
             cacheLens,
-            (cache) => (coincidenceIndex < 0)
+            (cache: any) => (coincidenceIndex < 0)
               ? append(actionWrap, cache)
               : set(lensIndex(coincidenceIndex), actionWrap)(cache)
             ,
