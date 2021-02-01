@@ -136,11 +136,19 @@ test('actions are removed from cach after time to live', () => {
 const actionAndCacheGen = fc
   .set(
     fc.tuple(
-      fc.fullUnicodeString(1, 15),
-      fc.integer(10, duration('PT3H').asMilliseconds())
+      fc.fullUnicodeString({
+        minLength: 1,
+        maxLength: 15
+      }),
+      fc.integer({
+        min: 10,
+        max: duration('PT3H').asMilliseconds()
+      })
     ),
-    (a, b) => {
-      return a[0] === b[0]
+    {
+      compare: (a, b) => {
+        return a[0] === b[0]
+      }
     })
   .chain(types => {
 

@@ -47,14 +47,17 @@ test('Cacheable actions are cached', () => {
 
   fc.assert(
     fc.property(
-      fc.array(
-        fc.record({
-          type: fc.fullUnicodeString(1, 15),
-          payload: fc.fullUnicodeString(),
-          id: fc.uuid()
+      fc.array(fc.record({
+        type: fc.fullUnicodeString({
+          minLength: 1,
+          maxLength: 15
         }),
-        1,
-        15),
+        payload: fc.fullUnicodeString(),
+        id: fc.uuid()
+      }), {
+        minLength: 1,
+        maxLength: 15
+      }),
       (actions) => {
 
         const config = {
@@ -106,19 +109,21 @@ test('Reset returns empty cache', () => {
 
   fc.assert(
     fc.property(
-      fc.array(
-        fc.record({
-          type: fc.fullUnicodeString(1, 15),
-          payload: fc.fullUnicodeString(),
-          meta: fc.record({
-            [REDUX_ACTION_RETRY]: fc.record({
-              id: fc.uuid()
-            })
-          })
+      fc.array(fc.record({
+        type: fc.fullUnicodeString({
+          minLength: 1,
+          maxLength: 15
         }),
-        1,
-        15
-      ),
+        payload: fc.fullUnicodeString(),
+        meta: fc.record({
+          [REDUX_ACTION_RETRY]: fc.record({
+            id: fc.uuid()
+          })
+        })
+      }), {
+        minLength: 1,
+        maxLength: 15
+      }),
       (actions) => {
 
         const libConfig = {
@@ -150,19 +155,21 @@ test('Remove returns cache without element', () => {
 
   fc.assert(
     fc.property(
-      fc.array(
-        fc.record({
-          type: fc.fullUnicodeString(1, 15),
-          payload: fc.anything(),
-          meta: fc.record({
-            [REDUX_ACTION_RETRY]: fc.record({
-              id: fc.uuid()
-            })
-          })
+      fc.array(fc.record({
+        type: fc.fullUnicodeString({
+          minLength: 1,
+          maxLength: 15
         }),
-        1,
-        15
-      ),
+        payload: fc.anything(),
+        meta: fc.record({
+          [REDUX_ACTION_RETRY]: fc.record({
+            id: fc.uuid()
+          })
+        })
+      }), {
+        minLength: 1,
+        maxLength: 15
+      }),
       (actions) => {
 
         const libConfig = {
@@ -211,7 +218,10 @@ test('Retry all', () => {
     fc.property(
       fc.array(
         fc.record({
-          type: fc.fullUnicodeString(1, 15),
+          type: fc.fullUnicodeString({
+            minLength: 1,
+            maxLength: 15
+          }),
           payload: fc.anything(),
           meta: fc.record({
             [REDUX_ACTION_RETRY]: fc.record({

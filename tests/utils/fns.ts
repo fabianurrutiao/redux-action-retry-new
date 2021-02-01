@@ -17,7 +17,10 @@ export function actionAndCacheGen() {
   return fc
     .array(
       fc.record({
-        type: fc.fullUnicodeString(1, 15),
+        type: fc.fullUnicodeString({
+          minLength: 1,
+          maxLength: 15
+        }),
         payload: fc.anything(),
         meta: fc.record({
           [REDUX_ACTION_RETRY]: fc.record({
@@ -39,7 +42,7 @@ export function actionAndCacheGen() {
           )
         }
       })
-    )
+    );
 }
 
 export const Actions2RetryAllDispatchPattern = converge(

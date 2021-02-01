@@ -58,11 +58,13 @@ test('actions are removed from cache after time to live', () => {
 })
 
 const actionAndCacheGen = fc
-  .set(
-    fc.fullUnicodeString(1, 15),
-    1,
-    10,
-  )
+  .set(fc.fullUnicodeString({
+  minLength: 1,
+  maxLength: 15
+}), {
+  minLength: 1,
+  maxLength: 10
+})
   .chain(types => {
 
     const cache: cacheConfig<timesConfig> = types.reduce<cacheConfig<timesConfig>>(

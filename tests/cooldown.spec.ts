@@ -42,13 +42,18 @@ test('when action is cooling retrying has no effect', () => {
   fc.assert(
     fc.property(
       fc.tuple(
-        fc.integer(
-          duration('PT1S').asMilliseconds(),
-          duration('PT24H').asMilliseconds()
-        ),
+        fc.integer({
+          min: duration('PT1S').asMilliseconds(),
+          max: duration('PT24H').asMilliseconds()
+        }),
         fc.set(
-          fc.fullUnicodeString(1, 15),
-          1
+          fc.fullUnicodeString({
+            minLength: 1,
+            maxLength: 15
+          }),
+          {
+            maxLength: 1
+          }
         ),
       )
       , (arr) => {
@@ -122,7 +127,10 @@ test('0ms cooldown is the same as retry all without plugin', () => {
   fc.assert(
     fc.property(
       fc.set(
-        fc.fullUnicodeString(1, 15)
+        fc.fullUnicodeString({
+          minLength: 1,
+          maxLength: 15
+        })
       ),
       (arr) => {
 
@@ -383,11 +391,19 @@ test(`cool and retry all makes retrying work again`, () => {
 const actionAndCacheGen = fc
   .set(
     fc.tuple(
-      fc.fullUnicodeString(1, 15),
-      fc.integer(10, duration('PT3H').asMilliseconds())
+      fc.fullUnicodeString({
+        minLength: 1,
+        maxLength: 15
+      }),
+      fc.integer({
+        min: 10,
+        max: duration('PT3H').asMilliseconds()
+      })
     ),
-    (a, b) => {
-      return a[0] === b[0]
+    {
+      compare: (a, b) => {
+        return a[0] === b[0]
+      }
     })
   .chain(types => {
 
