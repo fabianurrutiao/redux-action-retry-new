@@ -37,8 +37,6 @@ import { upsertActionCreator } from '../src/core/upsert';
 import { retryAllActionCreator } from '../src/core/retryAll';
 import { collectGarbageActionCreator } from "../src/core/protocols/GarbageCollectorProtocol";
 import { removeActionsCreator } from "../src/core/protocols/RemovedProtocol";
-// import reduce from 'ramda/es/reduce';
-
 
 jest.mock('../src/now', () => ({
   now: jest.fn()
