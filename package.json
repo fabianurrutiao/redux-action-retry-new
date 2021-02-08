@@ -1,13 +1,14 @@
 {
-  "name": "redux-action-retry",
-  "version": "0.2.1",
+  "name": "redux-action-retry-new",
+  "version": "0.1.0",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:edgarjrg/redux-action-retry.git"
+    "url": "git@github.com:fabianurrutiao/redux-action-retry-new.git"
   },
   "description": "At least once delivery of Redux Actions",
   "author": "edgar rodriguez <edgarj.rodriguezg@gmail.com>",
+  "maintainers": ["Fabian Urrutia <fabian.urrutia@live.cl>"],
   "license": "MIT",
   "keywords": [
     "react",
