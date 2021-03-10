@@ -11,7 +11,7 @@ yarn add redux-action-retry
 
 ```ts
 import { v4 as uuidv4 } from 'uuid';
-import { REDUX_ACTION_RETRY } from 'redux-action-retry';
+import { REDUX_ACTION_RETRY } from 'redux-action-retry-new';
 
 // actions to retry
 export const SEND_LOGS_TO_SERVER = 'SEND_LOGS_TO_SERVER';
@@ -39,7 +39,7 @@ import {
   applyMiddleware,
 } from 'redux';
 
-import { createRetryMechanism } from 'redux-action-retry';
+import { createRetryMechanism } from 'redux-action-retry-new';
 import { SEND_LOGS_TO_SERVER, NOTIFY_ACTION } from './actions';
 
 const { reducer, reduxActionRetryMiddlewares, stateKeyName } = createRetryMechanism({
@@ -73,7 +73,7 @@ When actions are dispatched, the middleware immediately caches the action, if th
 
 ```ts
 import { put } from 'redux-saga/effects'
-import { removeActionCreator } from 'redux-action-retry';
+import { removeActionCreator } from 'redux-action-retry-new';
 
 function* sendLogsToServer(action) {
   // domain logic...
@@ -90,7 +90,7 @@ When retrying is needed you can dispatch a retry all action.
 
 ```ts
 import { put } from 'redux-saga/effects'
-import { retryAllActionCreator } from 'redux-action-retry';
+import { retryAllActionCreator } from 'redux-action-retry-new';
 
 function* appForeground() {
   // domain logic...
@@ -106,7 +106,7 @@ function* appForeground() {
 ```ts
 import {
   resetActionCreator,
-} from 'redux-action-retry';
+} from 'redux-action-retry-new';
 
 function logout() {
   // domain logic...
@@ -144,7 +144,7 @@ import {
   applyMiddleware,
 } from 'redux';
 import { duration } from "moment";
-import { createRetryMechanism, Cooldown } from 'redux-action-retry';
+import { createRetryMechanism, Cooldown } from 'redux-action-retry-new';
 import { SEND_LOGS_TO_SERVER, NOTIFY_ACTION } from './actions';
 
 const { reducer, reduxActionRetryMiddlewares, stateKeyName } = createRetryMechanism({
@@ -185,7 +185,7 @@ In the case of an early fail response we might want the action be to be retryabl
 
 ```ts
 import { put } from 'redux-saga/effects'
-import { cancelCooldownActionCreator } from 'redux-action-retry';
+import { cancelCooldownActionCreator } from 'redux-action-retry-new';
 
 function* sendLogsToServer(action) {
   // domain logic...
@@ -205,7 +205,7 @@ function* sendLogsToServer(action) {
 In case we want to Retry All without caring for the cooldown time, dispatch a **coolAndRetryAllActionCreator**.
 
 ```ts
-import { coolAndRetryAllActionCreator } from 'redux-action-retry';
+import { coolAndRetryAllActionCreator } from 'redux-action-retry-new';
 
 function* rehydrate(action) {
   // domain logic...
@@ -258,7 +258,7 @@ import {
   applyMiddleware,
 } from 'redux';
 import { duration } from "moment";
-import { createRetryMechanism, times } from 'redux-action-retry';
+import { createRetryMechanism, times } from 'redux-action-retry-new';
 import { SEND_LOGS_TO_SERVER, NOTIFY_ACTION } from './actions';
 
 const { reducer, reduxActionRetryMiddlewares, stateKeyName } = createRetryMechanism({
@@ -309,7 +309,7 @@ import {
   applyMiddleware,
 } from 'redux';
 import { duration } from "moment";
-import { createRetryMechanism, TimeToLive } from 'redux-action-retry';
+import { createRetryMechanism, TimeToLive } from 'redux-action-retry-new';
 import { SEND_LOGS_TO_SERVER, NOTIFY_ACTION } from './actions';
 
 const { reducer, reduxActionRetryMiddlewares, stateKeyName } = createRetryMechanism({
@@ -344,7 +344,7 @@ export const store = createStore(
 
 When we want to remove dead actions we dispatch a **collectGarbageActionCreator**.
 ```ts
-import { collectGarbageActionCreator } from 'redux-action-retry';
+import { collectGarbageActionCreator } from 'redux-action-retry-new';
 
 function* rehydrate(action) {
   // domain logic...
@@ -355,3 +355,4 @@ function* rehydrate(action) {
   yield put(coolAndRetryAllActionCreator(action))
 }
 ```
+
